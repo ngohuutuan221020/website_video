@@ -14,13 +14,13 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
-      {api2.map((item, index) => {
+      {/* {api2.map((item, index) => {
         return (
           <>
             <div>{item.title}</div>
           </>
         );
-      })}
+      })} */}
       <h1 style={{marginBottom: "2rem"}}>
         <img height={50} src="https://logos-world.net/wp-content/uploads/2023/08/X-Logo.png"></img>Video
       </h1>
