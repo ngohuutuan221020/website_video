@@ -1,6 +1,22 @@
 import styles from "./page.module.css";
+
+// let api = [
+//   {
+//     name: "rh2048.com@MIZD-304.mp4",
+//     link: "https://drive.google.com/file/d/1tOMrcbrOsJq-W_muDvoA2B5Spt1z1odD/preview",
+//   },
+//   {
+//     name: "A-MOSAIC-ARCHIVE-STARS-964.mp4",
+//     link: "https://drive.google.com/file/d/13LDhxXVg9ktDJYqsuF-6ObAonxL20QJP/preview",
+//   },
+//   {
+//     name: "A-MOSAIC-ARCHIVE-STARS-964.mp4",
+//     link: "https://drive.google.com/file/d/13LDhxXVg9ktDJYqsuF-6ObAonxL20QJP/preview",
+//   },
+// ];
+
 const getData = async () => {
-  const resp = await fetch("https://ngohuutuan221020.github.io/api/video.json");
+  const resp = await fetch("https://ngohuutuan221020.github.io/api/video.json", {next: {revalidate: 0}});
   return resp.json();
 };
 
