@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import Image from "next/image";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const getData = async () => {
@@ -26,7 +25,7 @@ export default async function Home() {
               api.length > 0 &&
               api.map((item, index) => {
                 return (
-                  <div className="col" style={{ height: "25rem" }} key={index}>
+                  <div className="col" key={index}>
                     <div className="card shadow-sm" style={{ height: "100%" }}>
                       {/* <iframe
                         width="100%"
@@ -43,6 +42,7 @@ export default async function Home() {
                       ></a>
                       <div className="card-body">
                         <p className="card-text">{item.name}</p>
+                        <p className="card-text">{item.size}</p>
                       </div>
                     </div>
                   </div>
