@@ -24,6 +24,25 @@ export default async function Home() {
             {api &&
               api.length > 0 &&
               api.map((item, index) => {
+                let str = item.link;
+                let thumbnail = str
+                  .split("/d/")
+                  .pop()
+                  .split("/")
+                  .reverse()
+                  .pop();
+
+                const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+                if (item.size === 0) return "n/a";
+                const i = parseInt(
+                  Math.floor(Math.log(item.size) / Math.log(1024)),
+                  10
+                );
+                if (i === 0) return `${item.size} ${sizes[i]})`;
+                let sizeCV = `${(item.size / 1024 ** i).toFixed(1)} ${
+                  sizes[i]
+                }`;
+
                 return (
                   <div className="col" key={index}>
                     <div className="card shadow-sm" style={{ height: "100%" }}>
@@ -39,10 +58,15 @@ export default async function Home() {
                         href={item.link}
                         target="_blank"
                         className={styles.background}
+                        style={{
+                          backgroundImage: `url(https://drive.google.com/thumbnail?id=${thumbnail}&sz=w1000)`,
+                        }}
                       ></a>
                       <div className="card-body">
                         <p className="card-text">{item.name}</p>
-                        <p className="card-text">{item.size}</p>
+                        <p className="card-text">
+                          {sizeCV !== "NaN undefined" ? sizeCV : "000.0 MB"}
+                        </p>
                       </div>
                     </div>
                   </div>

@@ -5,7 +5,7 @@
   align-items: center;
 }
 .background {
-  background: url("../public/bg-img.jpg");
+  /* background: url("../public/bg-img.jpg"); */
   height: 300px;
   background-size: cover;
   background-repeat: no-repeat;
