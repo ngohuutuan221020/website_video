@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import Hide from "./Hide";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "dotenv/config";
 require("dotenv").config();
@@ -15,7 +16,7 @@ const getData = async () => {
 
 export default async function Home() {
   const api = await getData();
-  console.log(api);
+
   return (
     <main>
       <h1 className={styles.main}>
@@ -25,7 +26,6 @@ export default async function Home() {
           style={{ height: "50vh" }}
         />
       </h1>
-
       <div className="album py-5  ">
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -83,6 +83,7 @@ export default async function Home() {
                           <p className="card-text">⏳ {item.time}</p>
                         </div>
                       </div>
+                      <Hide item={thumbnail} />
                     </div>
                   </div>
                 );
