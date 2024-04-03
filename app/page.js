@@ -1,9 +1,13 @@
 import styles from "./page.module.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "dotenv/config";
+require("dotenv").config();
 
 const getData = async () => {
   const resp = await fetch(
-    "https://ngohuutuan221020.github.io/api/video.json",
+    process.env.API
+      ? process.env.API
+      : "https://ngohuutuan221020.github.io/api/video.json",
     { next: { revalidate: 0 } }
   );
   return resp.json();
@@ -11,11 +15,15 @@ const getData = async () => {
 
 export default async function Home() {
   const api = await getData();
-
+  console.log(api);
   return (
     <main>
       <h1 className={styles.main}>
-        <img width="auto" src="/bg.jpg" style={{ height: "50vh" }} />
+        <img
+          width="auto"
+          src={process.env.IMG ? process.env.IMG : "./bg.jpg"}
+          style={{ height: "50vh" }}
+        />
       </h1>
 
       <div className="album py-5  ">
@@ -32,16 +40,16 @@ export default async function Home() {
                   .reverse()
                   .pop();
 
-                const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-                if (item.size === 0) return "n/a";
-                const i = parseInt(
-                  Math.floor(Math.log(item.size) / Math.log(1024)),
-                  10
-                );
-                if (i === 0) return `${item.size} ${sizes[i]})`;
-                let sizeCV = `${(item.size / 1024 ** i).toFixed(1)} ${
-                  sizes[i]
-                }`;
+                // const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+                // if (item.size === 0) return "n/a";
+                // const i = parseInt(
+                //   Math.floor(Math.log(item.size) / Math.log(1024)),
+                //   10
+                // );
+                // if (i === 0) return `${item.size} ${sizes[i]})`;
+                // let sizeCV = `${(item.size / 1024 ** i).toFixed(1)} ${
+                //   sizes[i]
+                // }`;
 
                 return (
                   <div className="col" key={index}>
@@ -64,9 +72,16 @@ export default async function Home() {
                       ></a>
                       <div className="card-body">
                         <p className="card-text">{item.name}</p>
-                        <p className="card-text">
-                          {sizeCV !== "NaN undefined" ? sizeCV : "000.0 MB"}
-                        </p>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p className="card-text">{item.size}</p>
+                          <p className="card-text">⏳ {item.time}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
