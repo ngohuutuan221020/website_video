@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Hide from "./Hide";
+import Swip from "./Swip";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "dotenv/config";
 require("dotenv").config();
@@ -19,13 +20,9 @@ export default async function Home() {
 
   return (
     <main>
-      <h1 className={styles.main}>
-        <img
-          width="auto"
-          src={process.env.IMG ? process.env.IMG : "./bg.jpg"}
-          style={{ height: "50vh" }}
-        />
-      </h1>
+      <div className={styles.main}>
+        <Swip />
+      </div>
       <div className="album py-5  ">
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -40,26 +37,9 @@ export default async function Home() {
                   .reverse()
                   .pop();
 
-                // const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-                // if (item.size === 0) return "n/a";
-                // const i = parseInt(
-                //   Math.floor(Math.log(item.size) / Math.log(1024)),
-                //   10
-                // );
-                // if (i === 0) return `${item.size} ${sizes[i]})`;
-                // let sizeCV = `${(item.size / 1024 ** i).toFixed(1)} ${
-                //   sizes[i]
-                // }`;
-
                 return (
                   <div className="col" key={index}>
                     <div className="card shadow-sm" style={{ height: "100%" }}>
-                      {/* <iframe
-                        width="100%"
-                        height="100%"
-                        src={item.link}
-                        allow="autoplay"
-                      ></iframe> */}
                       <a
                         width="100%"
                         height="100%"
